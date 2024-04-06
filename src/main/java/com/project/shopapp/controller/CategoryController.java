@@ -2,6 +2,7 @@ package com.project.shopapp.controller;
 
 import com.project.shopapp.domain.Category;
 import com.project.shopapp.dto.CategoryDto;
+import com.project.shopapp.exception.CategoryException;
 import com.project.shopapp.service.CategoryService;
 import com.project.shopapp.service.MapValidationErrorService;
 import jakarta.validation.Valid;
@@ -31,6 +32,8 @@ public class CategoryController {
         if(responseEntity != null){
             return responseEntity;
         }
+
+
         Category entity = new Category();
         BeanUtils.copyProperties(dto,entity);
 
