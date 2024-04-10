@@ -28,4 +28,9 @@ public class CustomResponseEtityExceptionHandler extends ResponseEntityException
             ExceptionResponse exceptionResponse = new ExceptionResponse(ex.getMessage());
             return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
         }
+        @ExceptionHandler(BrandException.class)
+        public final ResponseEntity<Object> handleBrandException(BrandException ex, WebRequest request){
+            ExceptionResponse exceptionResponse = new ExceptionResponse(ex.getMessage());
+            return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+        }
 }
