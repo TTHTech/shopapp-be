@@ -5,11 +5,17 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@Getter
-@Setter
 @Component
 @ConfigurationProperties(prefix = "file")
 public class FileStorageProperties {
     private String uploadLogoDir;
-    //private String uploadProductImageDir;
+
+    // Getter and Setter
+    public String getUploadLogoDir() {
+        return uploadLogoDir;
+    }
+
+    public void setUploadLogoDir(String uploadLogoDir) {
+        this.uploadLogoDir = uploadLogoDir;
+    }
 }

@@ -19,14 +19,19 @@ public class FlieStorageService {
     private final Path fileLogoStorageLocation;
 
     public FlieStorageService(FileStorageProperties fileStorageProperties) {
-        this.fileLogoStorageLocation = Paths.get(fileStorageProperties.getUploadLogoDir()).toAbsolutePath().normalize();
-        try{
+        String uploadDir = fileStorageProperties.getUploadLogoDir();
+        if (uploadDir == null || uploadDir.isEmpty()) {
+            throw new FileStorageException("Upload directory not configured properly.");
+        }
+        System.out.println("Upload directory: " + uploadDir); // Thêm dòng này để kiểm tra
+        this.fileLogoStorageLocation = Paths.get(uploadDir).toAbsolutePath().normalize();
+        try {
             Files.createDirectories(this.fileLogoStorageLocation);
         } catch (Exception ex) {
             throw new FileStorageException("Could not create the directory where the uploaded files will be stored.", ex);
         }
-
     }
+
     public String storeLogoFile(MultipartFile file){
         return storeFile(fileLogoStorageLocation, file);
     }
